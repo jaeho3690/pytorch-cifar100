@@ -1,4 +1,9 @@
 **/__pycache__
-data
 checkpoint
 runs
+data/modified_miniimagenet/
+data/miniimagenet/mini-imagenet-cache-test.pkl
+data/miniimagenet/mini-imagenet-cache-train.pkl
+data/miniimagenet/mini-imagenet-cache-val.pkl
+
+

@@ -30,9 +30,9 @@ if __name__ == '__main__':
 
     net = get_network(args)
 
-    cifar100_test_loader = get_test_dataloader(
-        settings.CIFAR100_TRAIN_MEAN,
-        settings.CIFAR100_TRAIN_STD,
+    miniimagenet_test_loader = get_test_dataloader(
+        settings.MINIIMAGENET_TRAIN_MEAN,
+        settings.MINIIMAGENET_TRAIN_STD,
         #settings.CIFAR100_PATH,
         num_workers=4,
         batch_size=args.b,
@@ -47,8 +47,8 @@ if __name__ == '__main__':
     total = 0
 
     with torch.no_grad():
-        for n_iter, (image, label) in enumerate(cifar100_test_loader):
-            print("iteration: {}\ttotal {} iterations".format(n_iter + 1, len(cifar100_test_loader)))
+        for n_iter, (image, label) in enumerate(miniimagenet_test_loader):
+            print("iteration: {}\ttotal {} iterations".format(n_iter + 1, len(miniimagenet_test_loader)))
 
             if args.gpu:
                 image = image.cuda()
@@ -74,6 +74,6 @@ if __name__ == '__main__':
         print(torch.cuda.memory_summary(), end='')
 
     print()
-    print("Top 1 err: ", 1 - correct_1 / len(cifar100_test_loader.dataset))
-    print("Top 5 err: ", 1 - correct_5 / len(cifar100_test_loader.dataset))
+    print("Top 1 err: ", 1 - correct_1 / len(miniimagenet_test_loader.dataset))
+    print("Top 5 err: ", 1 - correct_5 / len(miniimagenet_test_loader.dataset))
     print("Parameter numbers: {}".format(sum(p.numel() for p in net.parameters())))
